@@ -270,7 +270,12 @@ export function Projects(): ReactElement {
   return (
     <Box component="section">
       <Stack spacing={2.5} sx={{ mb: 3 }}>
-        <Stack direction={{ xs: 'column', lg: 'row' }} spacing={2} justifyContent="space-between" alignItems={{ xs: 'stretch', lg: 'flex-end' }}>
+        <Stack
+          direction={{ xs: 'column', lg: 'row' }}
+          spacing={2}
+          justifyContent="space-between"
+          alignItems={{ xs: 'stretch', lg: 'flex-end' }}
+        >
           <Stack spacing={0.75}>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
               <Archive sx={{ color: 'primary.main' }} />
@@ -280,7 +285,8 @@ export function Projects(): ReactElement {
               Browse project workspaces and jump into the dashboards you manage most.
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              Showing {sortedProjectRows.length} of {allProjectRows.length} project{allProjectRows.length !== 1 ? 's' : ''}
+              Showing {sortedProjectRows.length} of {allProjectRows.length} project
+              {allProjectRows.length !== 1 ? 's' : ''}
             </Typography>
           </Stack>
 
@@ -338,7 +344,7 @@ export function Projects(): ReactElement {
 
         {searchQuery && (
           <Typography variant="caption" color="text.secondary">
-            Filtered by "{searchQuery}"
+            Filtered by &quot;{searchQuery}&quot;
           </Typography>
         )}
       </Stack>

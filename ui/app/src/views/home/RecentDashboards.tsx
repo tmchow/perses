@@ -59,10 +59,10 @@ export function RecentDashboards(): ReactElement {
           minHeight: 0,
           ...(dashboards.length === 0 && !isLoading
             ? {
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }
             : {}),
         }}
       >

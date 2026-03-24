@@ -78,7 +78,10 @@ function HomeView(): ReactElement {
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: { xs: 'minmax(0, 1fr)', lg: hasImportantDashboards ? 'minmax(0, 1.35fr) minmax(0, 1fr)' : 'minmax(0, 1fr)' },
+          gridTemplateColumns: {
+            xs: 'minmax(0, 1fr)',
+            lg: hasImportantDashboards ? 'minmax(0, 1.35fr) minmax(0, 1fr)' : 'minmax(0, 1fr)',
+          },
           gap: 3,
           alignItems: 'start',
         }}
