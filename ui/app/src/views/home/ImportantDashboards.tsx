@@ -35,29 +35,32 @@ export function ImportantDashboards(): ReactElement {
 
   return (
     <Card
-      elevation={1}
+      elevation={0}
       sx={{
         border: '1px solid',
         borderColor: 'divider',
         height: '100%',
-        maxHeight: 600,
         display: 'flex',
         flexDirection: 'column',
       }}
       data-testid="important-dashboards-card"
     >
       <CardContent sx={{ flex: '0 0 auto' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-          <StarFourPointsOutline sx={{ color: 'primary.main' }} />
-          <Typography variant="h6" sx={{ fontSize: '1.25rem', fontWeight: 600 }}>
-            Important Dashboards
+        <Stack spacing={0.75}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <StarFourPointsOutline sx={{ color: 'primary.main' }} />
+            <Typography variant="h6" sx={{ fontSize: '1.125rem', fontWeight: 600 }}>
+              Important Dashboards
+            </Typography>
+          </Box>
+          <Typography variant="body2" color="text.secondary">
+            Curated dashboards configured for quick access.
           </Typography>
-        </Box>
+        </Stack>
       </CardContent>
       <CardContent
         sx={{
           flex: '1 1 auto',
-          overflowY: 'auto',
           pt: 0,
           minHeight: 0,
           ...(dashboardList.length === 0 && !isLoading
@@ -82,7 +85,7 @@ export function ImportantDashboards(): ReactElement {
           />
         )}
         {!isLoading && dashboardList.length > 0 && (
-          <Box data-testid="important-dashboards-mosaic" sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box data-testid="important-dashboards-mosaic" sx={{ display: 'flex', flexDirection: 'column', gap: 1.5 }}>
             {dashboardList.map((dashboard) => {
               const metricsCount = Object.keys(dashboard.spec.panels ?? {}).length;
               const updatedAt = dashboard.metadata.updatedAt ?? dashboard.metadata.createdAt;
@@ -97,26 +100,25 @@ export function ImportantDashboards(): ReactElement {
                   component={RouterLink}
                   to={`/projects/${dashboard.metadata.project}/dashboards/${dashboard.metadata.name}`}
                   sx={{
-                    p: 2,
+                    p: 1.75,
                     borderRadius: 2,
                     cursor: 'pointer',
                     textDecoration: 'none',
                     color: 'inherit',
                     transition: 'all 0.2s',
                     '&:hover': {
-                      boxShadow: (theme) => theme.shadows[2],
                       bgcolor: 'action.hover',
+                      borderColor: 'action.selected',
                     },
                   }}
                 >
                   <Box sx={{ display: 'flex', gap: 2 }}>
                     <Box
                       sx={{
-                        p: 1.5,
+                        p: 1.25,
                         borderRadius: 2,
                         bgcolor: 'action.hover',
                         height: 'fit-content',
-                        transition: 'all 0.2s',
                         display: 'flex',
                       }}
                     >

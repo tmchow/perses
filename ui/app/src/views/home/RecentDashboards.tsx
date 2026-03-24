@@ -29,36 +29,40 @@ export function RecentDashboards(): ReactElement {
 
   return (
     <Card
-      elevation={1}
+      elevation={0}
       sx={{
         border: '1px solid',
         borderColor: 'divider',
         height: '100%',
-        maxHeight: 600,
         display: 'flex',
         flexDirection: 'column',
+        boxShadow: (theme) => theme.shadows[1],
       }}
     >
       <CardContent sx={{ flex: '0 0 auto' }}>
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 3 }}>
-          <HistoryIcon sx={{ color: 'primary.main' }} />
-          <Typography variant="h6" sx={{ fontSize: '1.25rem', fontWeight: 600 }}>
-            Recently Viewed Dashboards
+        <Stack spacing={0.75}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <HistoryIcon sx={{ color: 'primary.main' }} />
+            <Typography variant="h6" sx={{ fontSize: '1.25rem', fontWeight: 700 }}>
+              Recently Viewed Dashboards
+            </Typography>
+          </Box>
+          <Typography variant="body2" color="text.secondary">
+            Jump back into the dashboards you opened most recently.
           </Typography>
-        </Box>
+        </Stack>
       </CardContent>
       <CardContent
         sx={{
           flex: '1 1 auto',
-          overflowY: 'auto',
           pt: 0,
           minHeight: 0,
           ...(dashboards.length === 0 && !isLoading
             ? {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
             : {}),
         }}
       >
@@ -95,7 +99,8 @@ export function RecentDashboards(): ReactElement {
                         alignItems: 'center',
                         gap: 1.5,
                         py: 2,
-                        pl: 1,
+                        px: 1,
+                        borderRadius: 1.5,
                         textDecoration: 'none',
                         color: 'inherit',
                         cursor: 'pointer',
@@ -107,7 +112,7 @@ export function RecentDashboards(): ReactElement {
                     >
                       <Box
                         sx={{
-                          p: 1,
+                          p: 1.25,
                           borderRadius: 1.5,
                           bgcolor: 'primary.main',
                           display: 'flex',
@@ -120,8 +125,8 @@ export function RecentDashboards(): ReactElement {
 
                       <Box sx={{ flex: 1, minWidth: 0 }}>
                         <Typography
-                          variant="body2"
-                          sx={{ fontWeight: 500, overflow: 'hidden', textOverflow: 'ellipsis' }}
+                          variant="body1"
+                          sx={{ fontWeight: 600, overflow: 'hidden', textOverflow: 'ellipsis' }}
                         >
                           {displayName}
                         </Typography>
