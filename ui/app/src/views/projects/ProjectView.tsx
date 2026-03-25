@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import { useNavigate, useParams } from 'react-router-dom';
-import { Box, Stack, Grid, CircularProgress } from '@mui/material';
+import { Box, Stack, CircularProgress } from '@mui/material';
 import React, { ReactElement, useState } from 'react';
 import DeleteOutline from 'mdi-material-ui/DeleteOutline';
 import PencilIcon from 'mdi-material-ui/Pencil';
@@ -87,10 +87,14 @@ function ProjectView(): ReactElement {
   }
 
   return (
-    <Stack sx={{ width: '100%', overflowX: 'hidden' }} m={isMobileSize ? 1 : 2} mt={1.5} gap={1}>
-      <Box display="flex" justifyContent="space-between" gap={1}>
+    <Stack sx={{ width: '100%', overflowX: 'hidden' }} m={isMobileSize ? 1 : 2} mt={1.5} gap={2.5}>
+      <Stack gap={1.5}>
         <ProjectBreadcrumbs project={project} />
-        <Stack mt={0.5} gap={1} direction="row">
+        <Stack
+          direction={{ xs: 'column', sm: 'row' }}
+          gap={1}
+          sx={{ alignSelf: { xs: 'stretch', sm: 'flex-end' }, width: { xs: '100%', sm: 'auto' } }}
+        >
           <CRUDButton
             action="update"
             scope="Project"
@@ -111,6 +115,30 @@ function ProjectView(): ReactElement {
             {isMobileSize ? <DeleteOutline /> : 'Delete project'}
           </CRUDButton>
         </Stack>
+      </Stack>
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: {
+            xs: 'minmax(0, 1fr)',
+            xl: 'minmax(0, 1fr) minmax(320px, 360px)',
+          },
+          gap: 3,
+          alignItems: 'start',
+        }}
+      >
+        <Box sx={{ minWidth: 0 }}>
+          <ProjectTabs projectName={projectName} initialTab={tab} />
+        </Box>
+        <Box
+          sx={{
+            minWidth: 0,
+            position: { xl: 'sticky' },
+            top: { xl: 16 },
+          }}
+        >
+          <RecentlyViewedDashboards projectName={projectName} id="recent-dashboard-list" />
+        </Box>
         <RenameResourceDialog
           resource={project}
           open={isRenameProjectDialogOpen}
@@ -124,14 +152,6 @@ function ProjectView(): ReactElement {
           onClose={() => setIsDeleteProjectDialogOpen(false)}
         />
       </Box>
-      <Grid container columnSpacing={8} rowSpacing={1}>
-        <Grid item xs={12} xl={8}>
-          <ProjectTabs projectName={projectName} initialTab={tab} />
-        </Grid>
-        <Grid item xs={12} xl={4}>
-          <RecentlyViewedDashboards projectName={projectName} id="recent-dashboard-list" />
-        </Grid>
-      </Grid>
     </Stack>
   );
 }
